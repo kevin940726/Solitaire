@@ -2,3 +2,5 @@ node_modules/*
 dict-cat.json
 dict-revised.json
 server.js
+.sass-cache/*
+style.css.map
