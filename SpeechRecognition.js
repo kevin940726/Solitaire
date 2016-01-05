@@ -17,6 +17,7 @@ var SpeechRecognition = function(result) {
     this.recognition = new this.NativeSpeechRocognition();
 
     this.recognition.result = result;
+    this.recognition.speaking = false;
 
     this.recognition.continuous = false;
     this.recognition.interimResults = true;
@@ -30,6 +31,7 @@ var SpeechRecognition = function(result) {
 
 SpeechRecognition.prototype.onstart = function() {
     console.log("Speech Recognition Start!");
+    this.speaking = true;
     this.interimTranscript = "";
     this.transcript = "";
 };
@@ -46,7 +48,7 @@ SpeechRecognition.prototype.onresult = function(event) {
     }, "");
 
     if (this.result) {
-        this.result.innerHTML = this.transcript ? this.transcript : this.interimTranscript;
+        this.result.value = this.transcript ? this.transcript : this.interimTranscript;
     }
 
     return this;

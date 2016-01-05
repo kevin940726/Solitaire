@@ -3,14 +3,25 @@
 <head>
     <meta charset="utf-8">
     <title>Solitaire</title>
+
+    <link rel="stylesheet" href="style.css" media="screen" charset="utf-8">
 </head>
 <body>
-    <input id="text" type="text"></input>
-    <button type="submit" onclick="solitaire(document.getElementById('text').value)">送出</button>
+    <div class="container">
+        <form>
+            <div class="text-input">
+                <input class="user-input" id="text" type="text" required></input>
+                <label class="user-input" for="text"></label>
+                <button type="submit" onclick="solitaire(document.getElementById('text').value)"></button>
+            </div>
+            <a id="microphone-btn" href="#" class="microphone-btn"><img class="icon-microphone" src="src/microphone-outline.svg" /></a>
+        </form>
 
-    <div id="result"></div>
-    <ul id="records">
-    </ul>
+
+        <div id="result"></div>
+        <ul class="records" id="records">
+        </ul>
+    </div>
 
     <script src="bundle.js" charset="utf-8"></script>
 </body>

@@ -1,0 +1,121 @@
+@import url(http://fonts.googleapis.com/earlyaccess/cwtexhei.css);
+* {
+  font-family: 'cwtexhei';
+  letter-spacing: 0.1em; }
+
+html {
+  height: 100%; }
+
+body {
+  margin: 0;
+  position: relative;
+  height: 100%; }
+
+.container {
+  display: block;
+  width: 80%;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  text-align: center; }
+  .container form {
+    background-color: rgba(255, 255, 255, 0.9);
+    z-index: 100;
+    position: fixed;
+    width: 80%;
+    top: 0;
+    padding-top: 10%; }
+  .container .text-input {
+    height: 100px;
+    position: relative; }
+    .container .text-input input.user-input {
+      display: inline-block;
+      height: 100%;
+      width: 100%;
+      padding: 30px;
+      font-size: 50px;
+      box-sizing: border-box;
+      border: 0;
+      outline: none;
+      text-align: center;
+      background-color: inherit; }
+      .container .text-input input.user-input:focus + label.user-input:after, .container .text-input input.user-input:valid + label.user-input:after {
+        width: 100%; }
+    .container .text-input label.user-input {
+      display: block;
+      position: absolute;
+      height: 3px;
+      background-color: #EEE;
+      width: 100%;
+      bottom: 0;
+      left: 0;
+      right: 0; }
+      .container .text-input label.user-input:after {
+        content: '';
+        display: block;
+        position: absolute;
+        height: 100%;
+        left: 0;
+        right: 0;
+        margin: auto;
+        width: 0;
+        background-color: #2196F3;
+        transition: all 0.5s ease-out; }
+    .container .text-input button[type="submit"] {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      border: 0;
+      background-color: inherit;
+      width: 80px;
+      height: 60px;
+      margin: auto; }
+  .container .microphone-btn {
+    position: relative;
+    margin-top: 20px;
+    display: inline-block; }
+
+.icon-microphone {
+  width: 100px;
+  height: 100px;
+  position: relative;
+  display: inline-block; }
+
+.records {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 20px;
+  display: block;
+  width: 50%;
+  left: 0;
+  right: 0;
+  margin: 0 auto 7%;
+  position: absolute;
+  top: 0; }
+  .records li {
+    margin: 5px 0; }
+    .records li span {
+      display: inline-block;
+      padding: 0.5em 1em;
+      border-radius: 18px; }
+    .records li.player {
+      text-align: right; }
+      .records li.player span {
+        background-color: #2196F3;
+        color: #FFF; }
+    .records li.com {
+      text-align: left; }
+      .records li.com span {
+        background-color: #EEEEEE;
+        color: #000; }
+    .records li.system {
+      text-align: center;
+      font-size: 0.9em; }
+      .records li.system span {
+        padding: 0; }
+
+/*# sourceMappingURL=style.css.map */
