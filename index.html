@@ -8,17 +8,15 @@
 </head>
 <body>
     <div class="container">
-        <form>
+        <form onsubmit="submitWord(false); return false;">
             <div class="text-input">
                 <input class="user-input" id="text" type="text" required></input>
                 <label class="user-input" for="text"></label>
-                <button type="submit" onclick="solitaire(document.getElementById('text').value)"></button>
+                <button type="submit"></button>
             </div>
             <a id="microphone-btn" href="#" class="microphone-btn"><img class="icon-microphone" src="src/microphone-outline.svg" /></a>
         </form>
 
-
-        <div id="result"></div>
         <ul class="records" id="records">
         </ul>
     </div>

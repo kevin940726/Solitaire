@@ -13,5 +13,9 @@
   ],
   "author": "Kai Hao",
   "license": "MIT",
+  "repository" : {
+    "type" : "git", 
+    "url" : "https://github.com/kevin940726/Solitaire.git"
+  },
   "devDependencies": {}
 }
