@@ -1,6 +1,6 @@
-var dict = require("./src/dict-solitaire-edition.json");
-var SpeechRecognition = require("./src/SpeechRecognition.js");
-var Solitaire = require("./src/Solitaire.js");
+var dict = require("./dict-solitaire-edition.json");
+var SpeechRecognition = require("./SpeechRecognition.js");
+var Solitaire = require("./Solitaire.js");
 
 var speech = new SpeechRecognition(document.getElementById("text"));
 var solitaire = new Solitaire(dict);
