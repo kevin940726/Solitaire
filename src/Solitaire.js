@@ -42,6 +42,15 @@ Solitaire.prototype.receiveWord = function(text, callback) {
         type: "regular"
     };
 
+    if (this.records.find(function(r) {
+        return r.word === text;
+    })) {
+        record.type = "duplicate";
+        this.records.push(record);
+        this.setStatus("ready", "接龍重複！");
+        return;
+    }
+
     var word = this.dict.find(function(d) {
         return d.title === text;
     });
@@ -74,6 +83,8 @@ Solitaire.prototype.receiveWord = function(text, callback) {
 };
 
 Solitaire.prototype.sendWord = function(word, callback) {
+    var solitaire = this;
+
     var record = {
         turn: 'com',
         word: word.title,
@@ -85,7 +96,12 @@ Solitaire.prototype.sendWord = function(word, callback) {
     var re = new RegExp("^" + lastBopomofo + " ");
     var result = this.dict.filter(function(d) {
         return d.bopomofo.search(re) === 0;
+    }).filter(function(d) {
+        return !solitaire.records.find(function(r) {
+            return r.word === d.title;
+        });
     });
+    
     if (!result.length) {
         re = new RegExp("^" + lastBopomofo.removeTone() + "(ˊ|ˇ|ˋ|˙)? ");
         result = this.dict.filter(function(d) {
