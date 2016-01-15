@@ -56,5 +56,41 @@
         return this;
     };
 
-    module.exports = SpeechRecognition;
+    var SpeechSynthesis = function() {
+        this.NativeSpeechSynthesisUtterance = window.SpeechSynthesisUtterance ||
+            window.webkitSpeechSynthesisUtterance ||
+            window.mozSpeechSynthesisUtterance ||
+            window.msSpeechSynthesisUtterance ||
+            window.oSpeechSynthesisUtterance;
+
+        if (!this.NativeSpeechSynthesisUtterance) {
+            this.support = false;
+            console.log("Broweser not support!");
+            return null;
+        }
+
+        this.utterance = new this.NativeSpeechSynthesisUtterance();
+
+        this.utterance.uttering = false;
+
+        this.utterance.lang = 'cmn-Hant-TW';
+
+        this.utterance.onstart = this.onstart;
+        this.utterance.onend = this.onend;
+
+        return this.utterance;
+    };
+
+    SpeechSynthesis.prototype.onstart = function() {
+        console.log("uttering");
+        this.uttering = true;
+    };
+
+    SpeechSynthesis.prototype.onend = function() {
+        console.log("utterance end");
+        this.uttering = false;
+    };
+
+    exports.SpeechRecognition = SpeechRecognition;
+    exports.SpeechSynthesis = SpeechSynthesis;
 })();

@@ -1,3 +1,5 @@
+var SpeechSynthesis = require("./SpeechRecognition.js").SpeechSynthesis;
+
 String.prototype.removeTone = function() {
     return this.trim().replace(/(ˊ|ˇ|ˋ|˙)/, '');
 };
@@ -12,6 +14,7 @@ var Solitaire = function(dict) {
     this.lastBopomofo = "";
     this.records = [];
     this.dict = dict;
+    this.utterance = new SpeechSynthesis();
 
     return this;
 };
@@ -101,7 +104,12 @@ Solitaire.prototype.sendWord = function(word, callback) {
 
     this.records.push(record);
 
-    callback(record.word);
+    this.utterance.text = record.word;
+    window.speechSynthesis.speak(this.utterance);
+
+    this.utterance.onend = function() {
+        callback(record.word);
+    };
 
     return this;
 };
