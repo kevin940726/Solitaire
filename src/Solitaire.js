@@ -56,7 +56,7 @@ Solitaire.prototype.receiveWord = function(text, callback) {
     })) {
         record.type = "duplicate";
         this.records.push(record);
-        this.setStatus("ready", "接龍重複！");
+        this.setStatus("ready", "不可以重複！");
         return;
     }
 
@@ -67,7 +67,7 @@ Solitaire.prototype.receiveWord = function(text, callback) {
     if (!word) {
         record.type = "noMatch";
         this.records.push(record);
-        this.setStatus("ready", "查無此字！");
+        this.setStatus("ready", "辭典裡沒有這個詞啦！");
         return;
     }
 
@@ -78,7 +78,7 @@ Solitaire.prototype.receiveWord = function(text, callback) {
             if (firstBopomofo.removeTone() !== this.lastBopomofo.removeTone()) {
                 record.type = "fail";
                 this.records.push(record);
-                this.setStatus("ready", "接龍失敗！");
+                this.setStatus("ready", "接錯字了哦～");
                 return;
             }
         }
@@ -120,6 +120,7 @@ Solitaire.prototype.sendWord = function(word, callback) {
     }
     if (!result.length) {
         record.type = "fail";
+        this.setStatus("ready", "我接不下去了啦！");
         return;
     }
 
@@ -130,7 +131,7 @@ Solitaire.prototype.sendWord = function(word, callback) {
     this.records.push(record);
 
     this.utterance.text = record.word;
-    
+
     if (!window.mute) {
         window.speechSynthesis.speak(this.utterance);
         this.utterance.onend = function() {

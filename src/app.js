@@ -60,7 +60,7 @@ window.submitWord = function(isSpeech) {
 
     if (!speech.transcript) {
         console.log("Time out!");
-        solitaire.setStatus("ready", "時間到！");
+        solitaire.setStatus("ready", "想太久囉～");
         return;
     }
 
