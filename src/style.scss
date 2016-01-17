@@ -92,20 +92,44 @@ body {
         }
     }
 
-    .microphone-btn {
-        position: relative;
+    .control-panel {
         margin-top: 20px;
+        height: 100px;
         display: inline-block;
+        position: relative;
 
-        &.active {
-            // background-color: #000;
+        .microphone-btn {
+            position: relative;
+            display: inline-block;
+            float: left;
+            margin: 0 40px;
+
+            &.active {
+                // background-color: #000;
+            }
+        }
+        .reload-btn, .mute-btn {
+            position: relative;
+            height: 50px;
+            margin-top: 25px;
+            margin-bottom: 25px;
+            display: inline-block;
+            float: left;
         }
     }
+
 }
 
 .icon-microphone {
     width: 100px;
     height: 100px;
+    position: relative;
+    display: inline-block;
+}
+.icon-reload, .icon-mute {
+    width: 50px;
+    height: 50px;
+    line-height: 100px;
     position: relative;
     display: inline-block;
 }
@@ -126,16 +150,17 @@ body {
     li {
         margin: 5px 0;
 
-        span {
+        a {
             display: inline-block;
             padding: 0.5em 1em;
             border-radius: 18px;
+            text-decoration: none;
         }
 
         &.player {
             text-align: right;
 
-            span {
+            a {
                 background-color: #2196F3;
                 color: #FFF;
             }
@@ -143,16 +168,22 @@ body {
         &.com {
             text-align: left;
 
-            span {
+            a {
                 background-color: #EEEEEE;
                 color: #000;
+                transition: color 0.2s ease-out;
+
+                &:hover {
+                    color: #555;
+                    text-decoration: underline;
+                }
             }
         }
         &.system {
             text-align: center;
             font-size: 0.9em;
 
-            span {
+            a {
                 padding: 0;
             }
         }

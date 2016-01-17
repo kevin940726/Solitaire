@@ -7,6 +7,7 @@ var solitaire = new Solitaire(dict);
 
 var microphone = document.getElementById("microphone-btn").getElementsByTagName("img")[0];
 var recordsList = document.getElementById("records");
+var volume = document.getElementById("mute-btn").getElementsByTagName("img")[0];
 
 // microphone icon change observer
 Object.observe(solitaire, function(changes) {
@@ -31,7 +32,8 @@ Array.observe(solitaire.records, function(changes) {
     changes.map(function(change) {
         return solitaire.records[change.index];
     }).map(function(record) {
-        recordsList.innerHTML += '<li class="' + record.turn + '"><span>' + record.word + '</span></li>';
+        if (record)
+        recordsList.innerHTML += '<li class="' + record.turn + '"><a' + (record.turn === 'com' ? ' href="https://www.moedict.tw/' + record.word + '" target="_blank"' : '') + '>' + record.word + '</a></li>';
     });
 
     var scrollDistance = document.body.scrollHeight - document.body.scrollTop - window.innerHeight;
@@ -94,4 +96,22 @@ document.getElementById("microphone-btn").addEventListener('click', function(eve
         speech.abort();
     }
 
+});
+
+document.getElementById("mute-btn").addEventListener('click', function(event) {
+    event.preventDefault();
+
+
+    window.mute = !window.mute;
+    volume.src = window.mute ? 'src/mute.svg' : 'src/volume.svg';
+});
+
+document.getElementById("reload-btn").addEventListener('click', function(event) {
+    event.preventDefault();
+
+    speech.abort();
+    solitaire.reset();
+    document.getElementById("text").value = "";
+    recordsList.innerHTML = "";
+    microphone.src = "src/microphone-outline.svg";
 });

@@ -9,6 +9,7 @@ Array.prototype.getRandom = function() {
 };
 
 var Solitaire = function(dict) {
+
     this.status = "ready";
     this.msg = "";
     this.lastBopomofo = "";
@@ -16,6 +17,14 @@ var Solitaire = function(dict) {
     this.dict = dict;
     this.utterance = new SpeechSynthesis();
 
+    return this;
+};
+
+Solitaire.prototype.reset = function() {
+    this.status = "ready";
+    this.msg = "";
+    this.lastBopomofo = "";
+    this.records.splice(0, this.records.length);
     return this;
 };
 
@@ -101,7 +110,7 @@ Solitaire.prototype.sendWord = function(word, callback) {
             return r.word === d.title;
         });
     });
-    
+
     if (!result.length) {
         re = new RegExp("^" + lastBopomofo.removeTone() + "(ˊ|ˇ|ˋ|˙)? ");
         result = this.dict.filter(function(d) {
@@ -121,11 +130,16 @@ Solitaire.prototype.sendWord = function(word, callback) {
     this.records.push(record);
 
     this.utterance.text = record.word;
-    window.speechSynthesis.speak(this.utterance);
-
-    this.utterance.onend = function() {
+    
+    if (!window.mute) {
+        window.speechSynthesis.speak(this.utterance);
+        this.utterance.onend = function() {
+            callback(record.word);
+        };
+    }
+    else {
         callback(record.word);
-    };
+    }
 
     return this;
 };

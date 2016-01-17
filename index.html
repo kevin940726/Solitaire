@@ -14,13 +14,25 @@
                 <label class="user-input" for="text"></label>
                 <button type="submit"></button>
             </div>
-            <a id="microphone-btn" href="#" class="microphone-btn"><img class="icon-microphone" src="src/microphone-outline.svg" /></a>
+            <div class="control-panel">
+                <a id="reload-btn" href="#" class="reload-btn"><img class="icon-reload" src="src/refresh.svg" /></a>
+                <a id="microphone-btn" href="#" class="microphone-btn"><img class="icon-microphone" src="src/microphone-outline.svg" /></a>
+                <a id="mute-btn" href="#" class="mute-btn"><img class="icon-mute" src="src/volume.svg" /></a>
+            </div>
         </form>
 
         <ul class="records" id="records">
+
         </ul>
     </div>
 
+    <script id='records-template' type='text/ractive'>
+    {{#records:record}}
+        <li class={{turn}}><span>{{word}}</span></li>
+    {{/records}}
+    </script>
+
+    <script src='http://cdn.ractivejs.org/latest/ractive.js'></script>
     <script src="bundle.js" charset="utf-8"></script>
 </body>
 </html>
